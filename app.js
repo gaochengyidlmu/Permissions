@@ -10,7 +10,7 @@ async function generator () {
 
   await workbook.xlsx.readFile(filePath)
 
-  let worksheet = workbook.getWorksheet('test')
+  let worksheet = workbook.getWorksheet('Permissions')
 
   let fieldIndex = {
     buttonId: 3,
