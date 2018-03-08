@@ -1,22 +1,24 @@
+/* eslint-disable */
+
 const permissions = [
     <%
         for (let permissionInfo of permissionInfos) {
-          let permission = `${permissionInfo.operation}_${permissionInfo.object}`
+          let permissionId = `${permissionInfo.operation}_${permissionInfo.object}`
     %>
-    '<%= permission%>',<%}%>
+    {id: '<%= permissionId%>', object: '<%= permissionInfo.object%>', operation: '<%= permissionInfo.operation%>'},<%}%>
 ]
 
 const grants = [
     <%
         for (let permissionInfo of permissionInfos) {
-            let permission = `${permissionInfo.operation}_${permissionInfo.object}`
+            let permissionId = `${permissionInfo.operation}_${permissionInfo.object}`
             let roles = permissionInfo.roles.split(',')
             for (let role of roles) {
     %>
-    {seniorRole: '<%=role%>', permissionId: '<%=permission%>'},<%}}%>
+    {seniorRole: '<%=role%>', permissionId: '<%=permissionId%>'},<%}}%>
 ]
 
-modules.exports = {
+module.exports = {
     permissions,
     grants
 }

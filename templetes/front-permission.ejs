@@ -1,9 +1,11 @@
+/* eslint-disable */
+
 const buttonToPermissions = {
     <%
         for (let permissionInfo of permissionInfos) {
-          let permission = `${permissionInfo.operation}_${permissionInfo.object}`
+          let permissionId = `${permissionInfo.operation}_${permissionInfo.object}`
     %>
-    <%=permissionInfo.buttonId%>: '<%=permission%>',<%}%>
+    <%=permissionInfo.buttonId%>: '<%=permissionId%>',<%}%>
 }
 
 exports.buttonToPermissions = buttonToPermissions
