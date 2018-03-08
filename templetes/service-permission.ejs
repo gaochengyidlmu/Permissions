@@ -2,20 +2,29 @@
 
 const permissions = [
     <%
+        let permissionIds = []
+
         for (let permissionInfo of permissionInfos) {
-          let permissionId = `${permissionInfo.operation}_${permissionInfo.object}`
+            let permissionId = `${permissionInfo.operation}_${permissionInfo.object}`
+
+            if (!permissionIds.includes(permissionId)) {
+                permissionIds.push(permissionId)
     %>
-    {id: '<%= permissionId%>', object: '<%= permissionInfo.object%>', operation: '<%= permissionInfo.operation%>'},<%}%>
+    {id: '<%= permissionId%>', object: '<%= permissionInfo.object%>', operation: '<%= permissionInfo.operation%>'},<%}}%>
 ]
 
 const grants = [
     <%
+        let role_permissions = []
+
         for (let permissionInfo of permissionInfos) {
             let permissionId = `${permissionInfo.operation}_${permissionInfo.object}`
             let roles = permissionInfo.roles.split(',')
             for (let role of roles) {
+                if (!role_permissions.includes(`${role}-${permissionId}`)) {
+                    role_permissions.push(`${role}-${permissionId}`)
     %>
-    {seniorRole: '<%=role%>', permissionId: '<%=permissionId%>'},<%}}%>
+    {seniorRole: '<%=role%>', permissionId: '<%=permissionId%>'},<%}}}%>
 ]
 
 module.exports = {

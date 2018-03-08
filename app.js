@@ -21,7 +21,7 @@ async function generator () {
   let permissionInfos = []
 
   worksheet.eachRow((row, rowNumber) => {
-    if (rowNumber > 2 && row.getCell(3).value) {
+    if (rowNumber > 2 && row.getCell(fieldIndex.operation).value) {
       let permissionInfo = {}
 
       for (let key in fieldIndex) {
