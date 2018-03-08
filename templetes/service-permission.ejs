@@ -1,0 +1,22 @@
+const permissions = [
+    <%
+        for (let permissionInfo of permissionInfos) {
+          let permission = `${permissionInfo.operation}_${permissionInfo.object}`
+    %>
+    '<%= permission%>',<%}%>
+]
+
+const grants = [
+    <%
+        for (let permissionInfo of permissionInfos) {
+            let permission = `${permissionInfo.operation}_${permissionInfo.object}`
+            let roles = permissionInfo.roles.split(',')
+            for (let role of roles) {
+    %>
+    {seniorRole: '<%=role%>', permissionId: '<%=permission%>'},<%}}%>
+]
+
+modules.exports = {
+    permissions,
+    grants
+}

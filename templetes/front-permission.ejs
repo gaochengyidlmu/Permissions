@@ -1,0 +1,9 @@
+const buttonToPermissions = {
+    <%
+        for (let permissionInfo of permissionInfos) {
+          let permission = `${permissionInfo.operation}_${permissionInfo.object}`
+    %>
+    <%=permissionInfo.buttonId%>: '<%=permission%>',<%}%>
+}
+
+exports.buttonToPermissions = buttonToPermissions
